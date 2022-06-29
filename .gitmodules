@@ -1,0 +1,6 @@
+[submodule "riscv-gnu-toolchain"]
+	path = riscv-gnu-toolchain
+	url = https://github.com/riscv-collab/riscv-gnu-toolchain
+[submodule "qemu"]
+	path = qemu
+	url = https://github.com/qemu/qemu
