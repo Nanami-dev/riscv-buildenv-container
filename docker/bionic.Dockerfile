@@ -11,7 +11,8 @@ WORKDIR /src
 RUN mkdir -p install
 RUN git clone https://github.com/riscv-collab/riscv-gnu-toolchain.git riscv-toolchain
 RUN cd riscv-toolchain && git checkout 2022.06.10
-RUN cd riscv-toolchain && ./configure --prefix=/src/install/riscv --enable-multilib && make -j $(nproc) && make -j $(nproc) linux
+COPY ./scripts/riscv-toolchain.sh ./riscv-toolchain.sh
+RUN chmod +x ./riscv-toolchain.sh && ./riscv-toolchain.sh
 
 FROM ubuntu:bionic as qemubuild
 RUN apt update
@@ -26,7 +27,8 @@ WORKDIR /src
 RUN mkdir -p install
 RUN git clone https://github.com/qemu/qemu.git qemu
 RUN cd qemu && git checkout v7.0.0
-RUN cd qemu && ./configure --target-list=riscv64-softmmu,riscv64-linux-user --prefix=/src/install/qemu-riscv && make -j $(nproc) && make install
+COPY ./scripts/qemu.sh ./qemu.sh
+RUN chmod +x ./qemu.sh && ./qemu.sh
 
 FROM ubuntu:bionic as runner
 RUN apt update

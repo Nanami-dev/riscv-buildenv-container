@@ -1,4 +1,4 @@
-FROM ubuntu:jammy as tcbuild
+FROM ubuntu:focal as tcbuild
 RUN apt update
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 RUN apt-get -y install git autoconf automake autotools-dev curl python3 \
@@ -14,7 +14,7 @@ RUN cd riscv-toolchain && git checkout 2022.06.10
 COPY ./scripts/riscv-toolchain.sh ./riscv-toolchain.sh
 RUN chmod +x ./riscv-toolchain.sh && ./riscv-toolchain.sh
 
-FROM ubuntu:jammy as qemubuild
+FROM ubuntu:focal as qemubuild
 RUN apt update
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 RUN apt-get -y install git autoconf automake autotools-dev curl python3 \
@@ -30,7 +30,7 @@ RUN cd qemu && git checkout v7.0.0
 COPY ./scripts/qemu.sh ./qemu.sh
 RUN chmod +x ./qemu.sh && ./qemu.sh
 
-FROM ubuntu:jammy as runner
+FROM ubuntu:focal as runner
 RUN apt update
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 RUN apt-get -y install git autoconf automake autotools-dev curl python3 \
