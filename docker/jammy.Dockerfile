@@ -40,7 +40,7 @@ RUN apt-get -y install git autoconf automake autotools-dev curl python3 \
     libssh-dev
 
 COPY --from=tcbuild /src/install/riscv /opt/riscv
-COPY --from=qemubuild /src/install/qemu-riscv /opt/qemu-riscv
+COPY --from=qemubuild /src/install/qemu /opt/qemu-riscv
 
 RUN echo "export PATH=$PATH:/opt/riscv/bin:/opt/qemu-riscv/bin" > source.sh
 RUN echo "source /source.sh" >> /root/.bashrc
