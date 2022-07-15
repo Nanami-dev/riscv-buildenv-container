@@ -6,6 +6,9 @@ Container environment for development with RISC-V architecture
 - QEMU v7.0.0 (Only `qemu-system-riscv64`)
 
 ## Usage
+### Pre-built images
+https://hub.docker.com/r/nanamiiiii/riscv-buildenv-container
+
 ### build docker image
 **Warning:** this generate huge size of intermediate image about 20GB
 ```sh
@@ -41,4 +44,4 @@ In `Dockerfile`,
 FROM riscv-buildenv-container:<OS Version>
 ...
 ```
-I will share pre-built image via dockerhub soon.
+
